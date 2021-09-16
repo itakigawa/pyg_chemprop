@@ -17,7 +17,7 @@ dataset = RevIndexedDataset(pyg_dataset)
 
 # Usage
 
-See "test_ogbg-molhiv.ipynb".
+See [test_ogbg-molhiv.ipynb](test_ogbg-molhiv.ipynb).
 
 # Speed Test
 
