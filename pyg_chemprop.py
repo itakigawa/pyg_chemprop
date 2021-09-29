@@ -12,17 +12,18 @@ from tqdm import tqdm
 class RevIndexedData(Data):
     def __init__(self, orig):
         super(RevIndexedData, self).__init__()
-        for key in orig.keys:
-            self[key] = orig[key]
-        edge_index = self["edge_index"]
-        revedge_index = torch.zeros(edge_index.shape[1]).long()
-        for k, (i, j) in enumerate(zip(*edge_index)):
-            edge_to_i = edge_index[1] == i
-            edge_from_j = edge_index[0] == j
-            revedge_index[k] = torch.where(edge_to_i & edge_from_j)[0].item()
-        self["revedge_index"] = revedge_index
+        if orig:
+            for key in orig.keys:
+                self[key] = orig[key]
+            edge_index = self["edge_index"]
+            revedge_index = torch.zeros(edge_index.shape[1]).long()
+            for k, (i, j) in enumerate(zip(*edge_index)):
+                edge_to_i = edge_index[1] == i
+                edge_from_j = edge_index[0] == j
+                revedge_index[k] = torch.where(edge_to_i & edge_from_j)[0].item()
+            self["revedge_index"] = revedge_index
 
-    def __inc__(self, key, value):
+    def __inc__(self, key, value, *args, **kwargs):
         if key == "revedge_index":
             return self.revedge_index.max().item() + 1
         else:

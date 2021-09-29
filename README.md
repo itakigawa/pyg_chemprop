@@ -24,9 +24,9 @@ See [test_ogbg-molhiv.ipynb](test_ogbg-molhiv.ipynb).
 Environment
 
 * torch 1.8.1
-* torch_geometric 1.7.0
-* torch_scatter 2.0.7
-* ogb 1.3.1
+* torch_geometric 2.0.1
+* torch_scatter 2.0.8
+* ogb 1.3.2
 
 Results
 
